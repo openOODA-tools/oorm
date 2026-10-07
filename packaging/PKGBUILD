@@ -1,0 +1,21 @@
+# Maintainer: openOODA-tools <ops@openooda.org>
+pkgname=oorm-bin
+_pkgname=oorm
+pkgver=0.1.0
+pkgrel=1
+pkgdesc="Negative-trust file and tree unlinker with optional multi-pass cryptographic shred."
+arch=('x86_64')
+url="https://github.com/openOODA-tools/oorm"
+license=('Apache-2.0')
+depends=('glibc')
+provides=('oorm')
+conflicts=('oorm')
+source_x86_64=("${url}/releases/download/v${pkgver}/oorm-linux-x86_64"
+               "uninstall.sh::https://raw.githubusercontent.com/openOODA-tools/${_pkgname}/v${pkgver}/uninstall.sh")
+sha256sums_x86_64=('SKIP'
+                   'SKIP')
+
+package() {
+    install -Dm755 "${srcdir}/oorm-linux-x86_64" "${pkgdir}/usr/bin/oorm"
+    install -Dm755 uninstall.sh "${pkgdir}/usr/bin/oorm-uninstall"
+}
